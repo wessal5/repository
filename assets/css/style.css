@@ -1,0 +1,37 @@
+/* Custom styles for Movie Watchlist */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+.movie-card img {
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.movie-card:hover img {
+    transform: scale(1.02);
+}
+
+.text-truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.badge {
+    font-size: 0.85rem;
+}
