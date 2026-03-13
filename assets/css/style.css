@@ -1,37 +1,202 @@
-/* Custom styles for Movie Watchlist */
+/* Custom styles for Movie Watchlist - Netflix Style */
+
+:root {
+    --bg-color: #141414;
+    --text-color: #ffffff;
+    --card-bg: #1f1f1f;
+    --navbar-bg: #000000;
+    --accent-color: #e50914; /* Netflix Red */
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    --card-hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    --transition-speed: 0.3s;
+}
+
+[data-theme="light"] {
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --card-bg: #ffffff;
+    --navbar-bg: #212529;
+    --accent-color: #0d6efd;
+    --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
 
 body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .footer {
     margin-top: auto;
+    background-color: var(--navbar-bg) !important;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    padding: 1rem 0;
+    transition: background-color var(--transition-speed);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-color) !important;
+    letter-spacing: -1px;
+}
+
+/* Movie Cards */
+.movie-card {
+    background-color: var(--card-bg);
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), border var(--transition-speed);
+    box-shadow: var(--card-shadow);
+    height: 100%;
+}
+
+.movie-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: var(--card-hover-shadow);
+    border: 1px solid var(--accent-color);
+    z-index: 10;
 }
 
 .movie-card img {
     height: 400px;
+    width: 100%;
     object-fit: cover;
-    transition: transform 0.3s;
+    transition: transform var(--transition-speed);
 }
 
 .movie-card:hover img {
-    transform: scale(1.02);
+    /* Slightly brighten or zoom more? */
 }
 
-.text-truncate-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+/* Glow Effect */
+.movie-card:hover {
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+}
+
+.card-body {
+    padding: 1.25rem;
+    color: var(--text-color);
 }
 
 .card-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.badge {
-    font-size: 0.85rem;
+.card-subtitle {
+    font-size: 0.9rem;
+    color: #b3b3b3 !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #b20710;
+    border-color: #b20710;
+}
+
+/* Carousel Adjustments */
+.carousel-item {
+    padding: 2rem 0;
+}
+
+.carousel-poster {
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+/* Typing Animation */
+.typing-container {
+    font-size: 2.5rem;
+    font-weight: 800;
+    min-height: 4rem;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--accent-color);
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Stats Cards */
+.stats-card {
+    background-color: var(--card-bg);
+    border: none;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+}
+
+.stats-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent-color);
+}
+
+/* Rating Stars */
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    font-size: 2rem;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: #444;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #f5c518;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+    .movie-card img {
+        height: 300px;
+    }
+    .typing-container {
+        font-size: 1.8rem;
+    }
 }
